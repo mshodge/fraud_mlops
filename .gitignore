@@ -3,3 +3,4 @@ __pycache__
 venv_*
 .DS_Store
 model.py
+settings.json
