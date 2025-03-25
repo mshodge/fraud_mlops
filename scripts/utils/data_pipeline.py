@@ -2,7 +2,13 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler, OrdinalEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.feature_selection import SelectKBest, f_classif
+import logging
 
+# logging.basicConfig(level=logging.DEBUG)
+
+# import warnings
+
+# warnings.filterwarnings('ignore')
 
 def rename_columns(df):
     """Renames dataset columns to meaningful names."""
@@ -41,7 +47,7 @@ def split_data(df):
     y = df["fraud_label"]
     X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
     X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
-    return X_train, X_test, y_train, y_test, X_val, y_val
+    return X_train, X_test, y_train, y_test, X_val, y_val, X, y
 
 def encode_and_scale(X_train, X_test, X_val):
     """Encodes categorical features and scales numerical features."""
@@ -59,21 +65,27 @@ def encode_and_scale(X_train, X_test, X_val):
     
     return X_train, X_test, X_val
 
-def select_best_features(X_train, y_train, X_test, X_val):
+def select_best_features(X, X_train, y_train, X_test, X_val, print_scores=True):
     """Selects top k best features based on ANOVA F-value."""
     selector = SelectKBest(score_func=f_classif, k=15)
     X_train = selector.fit_transform(X_train, y_train)
     X_test = selector.transform(X_test)
     X_val = selector.transform(X_val)
+    
+    if print_scores:
+        # Checking the importance scores of each feature
+        feat_scores = pd.Series(selector.scores_, index=X.columns).sort_values(ascending = False)
+        print(feat_scores)
+        
     return X_train, X_test, X_val
 
-def data_pipeline(df):
+def data_pipeline(df, print_scores=True):
     df = rename_columns(df)
     df = preprocess_time_features(df)
     df = preprocess_value_features(df)
     df = preprocess_card_age(df)
 
-    X_train, X_test, y_train, y_test, X_val, y_val = split_data(df)
+    X_train, X_test, y_train, y_test, X_val, y_val, X, y = split_data(df)
     X_train, X_test, X_val = encode_and_scale(X_train, X_test, X_val)
-    X_train, X_test, X_val = select_best_features(X_train, y_train, X_test, X_val)
-    return     X_train, X_test, y_train, y_test, X_val, y_val
+    X_train, X_test, X_val = select_best_features(X, X_train, y_train, X_test, X_val, print_scores)
+    return X_train, X_test, y_train, y_test, X_val, y_val, X, y
