@@ -1,4 +1,4 @@
-# venv_fraud_mlops
+# fraud_mlops
 
 An example of how to apply MLOps principles to a predictive modelling porject. This repository uses the [Fraud Detection Transactions Dataset](https://www.kaggle.com/datasets/samayashar/fraud-detection-transactions-dataset) from Kaggle. The dataset is saved for convenience in the `data` folder as `synthetic_fraud_dataset.csv`.
 
