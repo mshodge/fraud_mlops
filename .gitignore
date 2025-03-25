@@ -4,3 +4,6 @@ venv_*
 .DS_Store
 model.py
 settings.json
+*.save
+X*.csv
+y*.csv
