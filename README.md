@@ -57,3 +57,5 @@ This will print the evaluation scores to the terminal.
 ## Model Deployment
 
 TBC. Will likely use FastAPI to deploy a model.
+
+For now you can see it in action in `notebook/predict.ipynb`.
