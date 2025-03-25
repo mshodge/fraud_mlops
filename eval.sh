@@ -1,2 +1,2 @@
-source venv_continuum_xgboost/bin/activate
-venv_continuum_xgboost/bin/python scripts/model_eval.py
+source venv_fraud_mlops/bin/activate
+venv_fraud_mlops/bin/python scripts/model_eval.py
