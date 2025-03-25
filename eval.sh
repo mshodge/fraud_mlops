@@ -1,0 +1,2 @@
+source venv_continuum_xgboost/bin/activate
+venv_continuum_xgboost/bin/python scripts/model_eval.py
