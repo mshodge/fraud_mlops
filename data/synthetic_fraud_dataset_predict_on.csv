@@ -1,0 +1,2 @@
+Transaction_ID,User_ID,Transaction_Amount,Transaction_Type,Timestamp,Account_Balance,Device_Type,Location,Merchant_Category,IP_Address_Flag,Previous_Fraudulent_Activity,Daily_Transaction_Count,Avg_Transaction_Amount_7d,Failed_Transaction_Count_7d,Card_Type,Card_Age,Transaction_Distance,Authentication_Method,Risk_Score,Is_Weekend,Fraud_Label
+TXN_33545,USER_1837,45.79,POS,2023-08-24 20:30:00,103213.17,Mobile,Mumbai,Travel,0,0,7,437.63,3,Amex,65,883.17,Biometric,0.8494,0,0
