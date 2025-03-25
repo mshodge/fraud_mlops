@@ -87,7 +87,8 @@ class TestDataPipeline(unittest.TestCase):
         self.assertEqual(X_train.shape[1], X_val.shape[1])
     
     def test_select_best_features(self):
-        from scripts.utils.data_pipeline import preprocess_time_features, preprocess_value_features, preprocess_card_age
+        from scripts.utils.data_pipeline import preprocess_time_features, preprocess_value_features
+        from scripts.utils.data_pipeline import preprocess_card_age
         from scripts.utils.data_pipeline import select_best_features
         from scripts.utils.data_pipeline import split_data, encode_and_scale
         

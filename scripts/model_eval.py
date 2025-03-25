@@ -1,24 +1,21 @@
 import mlflow
 import pandas as pd
 import numpy as np
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import mlflow.sklearn
 
 
 X_val = pd.read_csv('data/X_val.csv', index_col=0)
 # y_val = pd.read_csv('data/X_val.csv', index_col=0)
+y_val = pd.read_csv('data/y_val.csv', index_col=0).values
 
-y_val = np.loadtxt(open("data/y_val.csv", "rb"), delimiter=",", skiprows=1)
-
-
-logged_model = 'runs:/613ccf5a62fa4affab596d5177589989/XGBClassifier'
+logged_model = 'runs:/ad71048a0b904cae82d8209ba71d06cb/XGBClassifier'
 
 # Load model as a PyFuncModel.
 loaded_model = mlflow.pyfunc.load_model(logged_model)
 
-
-
 # Predict on a Pandas DataFrame.
-y_pred = loaded_model.predict(pd.DataFrame(X_val))
+y_pred = loaded_model.predict(X_val)
 
 # y_pred_proba = loaded_model.predict_proba(X_val)[:, 1]
 

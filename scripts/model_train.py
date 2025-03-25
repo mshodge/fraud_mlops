@@ -80,9 +80,13 @@ def main():
 
     X_train, X_test, y_train, y_test, X_val, y_val, X, y = data_pipeline(df, print_scores=True)
 
-    # Save validation set
+    # Save data sets
+    pd.DataFrame(X_train).to_csv("data/X_train.csv")
+    pd.DataFrame(X_test).to_csv("data/X_test.csv")
+    pd.DataFrame(y_train).to_csv("data/y_train.csv")
+    pd.DataFrame(y_test).to_csv("data/y_test.csv")
     pd.DataFrame(X_val).to_csv("data/X_val.csv")
-    pd.DataFrame(y_val).to_csv("data/y_val.csv", index=False)
+    pd.DataFrame(y_val).to_csv("data/y_val.csv")
 
     mlflow.set_experiment("Fraud Detection Experiment")
     train_and_evaluate_models(X_train, X_test, y_train, y_test)
