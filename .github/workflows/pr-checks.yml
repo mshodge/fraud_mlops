@@ -31,13 +31,19 @@ jobs:
           uv pip install -r pyproject.toml
 
       - name: Run Unit Tests with pytest
-        run: python -m pytest tests/ --disable-warnings --maxfail=5
+        run: |
+          source venv_fraud_mlops/bin/activate
+          python -m pytest tests/ --disable-warnings --maxfail=5
 
       - name: Check Code Formatting with Black
-        run: black --check .
+        run: |
+          source venv_fraud_mlops/bin/activate
+          black --check .
 
       - name: Lint Code with Flake8
-        run: flake8 .
+        run: |
+          source venv_fraud_mlops/bin/activate
+          flake8 .
 
       - name: Run Security Checks with Bandit
         run: bandit -q -r .
