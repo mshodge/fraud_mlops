@@ -7,7 +7,6 @@ from sklearn.feature_selection import SelectKBest, f_classif
 
 
 class TestDataPipeline(unittest.TestCase):
-
     def setUp(self):
         """Create a sample dataset for testing"""
         data = {
