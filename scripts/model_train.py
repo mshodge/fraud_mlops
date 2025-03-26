@@ -26,18 +26,16 @@ def load_data(file_path: str):
 def train_and_evaluate_models(X_train, X_test, y_train, y_test):
     """Trains multiple models and logs performance metrics in MLflow."""
     model_classes = {
+        "XGBClassifier": XGBClassifier,
         "LogisticRegression": LogisticRegression,
         "SGDClassifier": SGDClassifier,
-        "KNeighborsClassifier": KNeighborsClassifier,
         "RandomForestClassifier": RandomForestClassifier,
-        "AdaBoostClassifier": AdaBoostClassifier,
-        "GradientBoostingClassifier": GradientBoostingClassifier,
-        "XGBClassifier": XGBClassifier
+        "GradientBoostingClassifier": GradientBoostingClassifier
     }
 
     models = {name: model_classes[name](**params) for name, params in MODEL_PARAMS.items()}
 
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    skf = StratifiedKFold(n_splits=2, shuffle=True, random_state=42)
 
     for name, model in models.items():
         with mlflow.start_run(run_name=name):
