@@ -31,7 +31,7 @@ jobs:
           uv pip install -r pyproject.toml
 
       - name: Run Unit Tests with pytest
-        run: pytest tests/ --disable-warnings --maxfail=5
+        run: python -m pytest tests/ --disable-warnings --maxfail=5
 
       - name: Check Code Formatting with Black
         run: black --check .
